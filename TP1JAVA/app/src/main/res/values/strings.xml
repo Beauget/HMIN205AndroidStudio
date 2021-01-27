@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TP1Java</string>
+    <string name="textViewNom">Nom</string>
+</resources>
