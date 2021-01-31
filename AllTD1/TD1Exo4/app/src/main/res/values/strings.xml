@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TD1Exo4</string>
+    <string name="mainbutton">mainButton</string>
+    <string name="messageToast">messageToast</string>
+</resources>

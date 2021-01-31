@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">EventUtilisateurs</string>
+    <string name="menu_settings">Settings</string>
+    <string name="button_label">Show message</string>
+    <string name="mainbutton">MainButton</string>
+    <string name="image_content">image</string>
+    <string name="linux_box">LinuxBox</string>
+    <string name="macos_box">MacosBox</string>
+    <string name="windows_box">WindowsBox</string>
+    <string name="display_label">displayLabel</string>
+</resources>
