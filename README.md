@@ -1,7 +1,10 @@
 # HMIN205AndroidStudio
 
 
+
 # TD1
+
+Le dossier AllTD1 contient tout les projets pour chacun des exercices. (Avec le codes des questions)
 
 Les screenshots des résultats des différents codes du TD1 sont disponible dans le dossier Screen TD1.
 
