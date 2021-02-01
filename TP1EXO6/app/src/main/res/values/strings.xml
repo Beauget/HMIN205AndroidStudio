@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TP1XML</string>
+    <string name="Valider">Valider</string>
+    <string name="nom">Nom</string>
+    <string name="saisir_votre_nom">Saisir votre Nom</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="saisir_votre_pr_nom">Saisir votre Prénom</string>
+    <string name="age">Age</string>
+    <string name="saisir_votre_age">Saisir votre Age</string>
+    <string name="comp_tence">Compétence</string>
+    <string name="saisir_votre_comp_tence">Saisir votre Compétence</string>
+    <string name="n_tel">N°.Tel</string>
+    <string name="saisir_votre_num_ro">Saisir votre Numéro</string>
+    <string name="formulaire_valide">Formulaire validé !</string>
+    <string name="changeractivit">ChangerActivité</string>
+    <string name="tu_es_sur_la_deuxieme_activity">Tu es sur la deuxieme activity</string>
+    <string name="retour">Retour</string>
+    <string name="ok">Ok</string>
+    <string name="Recommencer">Recommencer</string>
+</resources>
