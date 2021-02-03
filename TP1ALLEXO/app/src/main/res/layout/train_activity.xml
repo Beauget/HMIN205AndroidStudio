@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/background"
+    >
+
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_above="@+id/fname"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="4dp"
+        app:srcCompat="@drawable/ic_train" />
+
+    <EditText
+        android:id="@+id/dep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:background="#11000000"
+        android:drawablePadding="5dip"
+        android:ems="10"
+        android:hint="@string/depart"
+        android:inputType="textPersonName"
+        android:textSize="16dp"
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:id="@+id/dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dep"
+        android:background="#11000000"
+        android:drawablePadding="5dip"
+        android:ems="10"
+        android:hint="@string/dest"
+        android:inputType="textPersonName"
+        android:textSize="16dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TableLayout
+        android:id="@+id/res"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/dest"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true">
+        <TableRow android:background="#192943" android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Heure de dep." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Heure d'arr." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Type" />
+        </TableRow>
+        <TableRow android:background="#11000000" android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10h10" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15h00" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="classe Eco" />
+        </TableRow>
+        <TableRow android:background="#11000000" android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="9H45" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="13H30" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Classe affaire" />
+        </TableRow>
+        <TableRow android:background="#11000000" android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="18H15" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="22H00" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Première classe" />
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/submit"
+        android:onClick="send"
+        android:background="@color/white"
+        android:text="@string/envoie"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/res"
+        android:layout_centerHorizontal="true">
+    </Button>
+
+</RelativeLayout>

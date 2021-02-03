@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/Accueil"
+        android:title="@string/accueil"
+        />
+
+    <item android:id="@+id/exo8Train"
+        android:title="@string/trains"
+        />
+
+    <item android:id="@+id/exo9Calendar"
+        android:title="@string/calendrier"
+        />
+</menu>

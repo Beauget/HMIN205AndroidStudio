@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TP1XML</string>
+    <string name="Valider">Check</string>
+    <string name="nom">Last Name</string>
+    <string name="saisir_votre_nom">Enter your Last Name</string>
+    <string name="pr_nom">First Name</string>
+    <string name="saisir_votre_pr_nom">Enter your First Name</string>
+    <string name="age">age</string>
+    <string name="saisir_votre_age">Enter your age</string>
+    <string name="comp_tence">Skill</string>
+    <string name="saisir_votre_comp_tence">Enter your skill</string>
+    <string name="n_tel">Phone number</string>
+    <string name="saisir_votre_num_ro">Enter your Phone number</string>
+    <string name="formulaire_valide">"Validated form ! "</string>
+    <string name="changeractivit">Change activity</string>
+    <string name="retour">back</string>
+    <string name="ok">Ok</string>
+    <string name="Recommencer">Do it again</string>
+</resources>
