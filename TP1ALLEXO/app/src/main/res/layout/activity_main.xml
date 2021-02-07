@@ -88,6 +88,6 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/changeractivit"
+        android:text="@string/versexo6"
         android:onClick="changeActivity" />
 </LinearLayout>
