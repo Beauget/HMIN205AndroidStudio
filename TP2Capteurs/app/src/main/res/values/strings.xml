@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TPCapteurs</string>
+    <string name="liste_des_capteurs">Liste des capteurs</string>
+    <string name="affichercapteurs">AfficherCapteurs</string>
+    <string name="affichercapteursDetails">afficherCapteursDetails</string>
+    <string name="capteurs_absent">Capteurs absent</string>
+    <string name="Accelerometre">Accelerometre </string>
+    <string name="direction">Direction :</string>
+    <string name="secouez_le_t_l_phone_pour_allumer_la_lampe">Secouez le téléphone pour allumer la lampe</string>
+    <string name="proximite">Proximite</string>
+    <string name="lalalalala">lalalalala</string>
+    <string name="proximity">PROCHE - 5CM</string>
+    <string name="proximity2">MOINS PROCHE + 5CM</string>
+    />
+</resources>
