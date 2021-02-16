@@ -1,6 +1,15 @@
 # HMIN205AndroidStudio
 
 
+# TP2Capteurs 
+
+Contient tout les exercices sur les capteurs
+
+# ScreenTP2Capteurs
+
+Contient les captures d'écran du TP sur les capteurs
+
+
 # TP1ALLEXO
 
 Contient mon app final avec tout les exercices du TP, avec des logos et une charte graphique reprenant toute les connaissances acquises au cours des TP.
