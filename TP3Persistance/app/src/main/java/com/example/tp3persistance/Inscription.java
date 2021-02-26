@@ -1,13 +1,22 @@
 package com.example.tp3persistance;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
 public class Inscription extends AppCompatActivity {
@@ -20,7 +29,6 @@ public class Inscription extends AppCompatActivity {
     private static final String _Key_of_prenom = "prenom";
     private static final String _Key_of_telephone = "tel";
     private static final String _Key_of_age = "age";
-    private static final String _Key_of_password = "password";
     private static final String _Key_of_userID = "userID";
 
     // String pour sauvegardé les données correspondants au clés
@@ -28,11 +36,11 @@ public class Inscription extends AppCompatActivity {
     String prenom = "";
     String age = "";
     String tel = "";
-    String password = "";
+    String FILENAME = "";
 
     //ID user
     private String userRandomId;
-    private Random userRand = new Random();
+    private final Random userRand = new Random();
 
 
     //gestion des zones de texte
@@ -40,7 +48,9 @@ public class Inscription extends AppCompatActivity {
     TextView onChangeText;
 
 
-
+    public void setRandId() {
+        userRandomId = "User" + String.valueOf(userRand.nextInt());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,23 +61,66 @@ public class Inscription extends AppCompatActivity {
            prenom = savedInstanceState.getString(_Key_of_prenom);
            age = savedInstanceState.getString(_Key_of_age);
            tel = savedInstanceState.getString(_Key_of_telephone);
-           password = savedInstanceState.getString(_Key_of_password);
            userRandomId = savedInstanceState.getString(_Key_of_userID);
 
            // On les affiches
             onChange = findViewById(R.id.nom); onChange.setText(nom);
             onChange = findViewById(R.id.prenom); onChange.setText(prenom);
-            onChange = findViewById(R.id.age); onChange.setText(nom);
+            onChange = findViewById(R.id.age); onChange.setText(age);
             onChange = findViewById(R.id.numero); onChange.setText(tel);
             onChangeText = findViewById(R.id.userID); onChangeText.setText(userRandomId);
 
-            Toast.makeText(this,"onCreate() méthode cas if : " + nom + prenom + age + tel + password + userRandomId,Toast.LENGTH_SHORT).show();
+            try {
+                FileOutputStream file = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                String concat = nom + prenom + age + tel + userRandomId;
+                file.write(concat.getBytes());
+                file.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Toast.makeText(this,"onCreate() méthode cas if : " + nom + prenom + age + tel  + userRandomId,Toast.LENGTH_SHORT).show();
         }
         else {
-            userRandomId = "User" + String.valueOf(userRand.nextInt());
+            setRandId();
             Toast.makeText(this, "onCreate() méthode cas else : " + userRandomId,Toast.LENGTH_SHORT ).show();
         }
         setContentView(R.layout.activity_main);
+
+        Button soum = (Button) findViewById(R.id.soum);
+
+        soum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Inscription.this, FileActivity.class);
+
+                onChange = findViewById(R.id.nom);
+                nom = onChange.getText().toString();
+
+                onChange = findViewById(R.id.prenom);
+                prenom = onChange.getText().toString();
+
+                onChange = findViewById(R.id.age);
+                age = onChange.getText().toString();
+
+                onChange = findViewById(R.id.numero);
+                tel = onChange.getText().toString();
+
+                FILENAME = prenom.toLowerCase() + userRandomId;
+
+                try {
+                    FileOutputStream file = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                    String concat = "UserId : " + userRandomId + " || " + "Nom : " + nom + " || "  + "Prénom : "  + prenom  + " || " + "Age : " + age  + " || " + "Tèl : " + tel  ;
+                    file.write(concat.getBytes());
+                    file.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                intent.putExtra(FileActivity.FILENAME,FILENAME);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -90,10 +143,6 @@ public class Inscription extends AppCompatActivity {
         tel = onChange.getText().toString();
         savedInstanceState.putString(_Key_of_telephone,tel);
 
-        onChange = findViewById(R.id.password);
-        password = onChange.getText().toString();
-        savedInstanceState.putString(_Key_of_password,password);
-
         onChangeText = findViewById(R.id.userID);
         userRandomId = onChangeText.getText().toString();
         savedInstanceState.putString(_Key_of_userID,userRandomId);
@@ -103,24 +152,26 @@ public class Inscription extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        nom = savedInstanceState.getString(_Key_of_nom);
+        prenom = savedInstanceState.getString(_Key_of_prenom);
+        age = savedInstanceState.getString(_Key_of_age);
+        tel = savedInstanceState.getString(_Key_of_telephone);
+        userRandomId = savedInstanceState.getString(_Key_of_userID);
 
-        if(savedInstanceState != null) {
-            nom = savedInstanceState.getString(_Key_of_nom);
-            prenom = savedInstanceState.getString(_Key_of_nom);
-            age = savedInstanceState.getString(_Key_of_nom);
-            tel = savedInstanceState.getString(_Key_of_nom);
-            password = savedInstanceState.getString(_Key_of_nom);
-            userRandomId = savedInstanceState.getString(_Key_of_userID);
+        // On les affiches
+        onChange = findViewById(R.id.nom);
+        onChange.setText(nom);
+        onChange = findViewById(R.id.prenom);
+        onChange.setText(prenom);
+        onChange = findViewById(R.id.age);
+        onChange.setText(age);
+        onChange = findViewById(R.id.numero);
+        onChange.setText(tel);
+        onChangeText = findViewById(R.id.userID);
+        onChangeText.setText(userRandomId);
 
-            onChange = findViewById(R.id.nom); onChange.setText(nom);
-            onChange = findViewById(R.id.prenom); onChange.setText(prenom);
-            onChange = findViewById(R.id.age); onChange.setText(nom);
-            onChange = findViewById(R.id.numero); onChange.setText(tel);
-            onChangeText = findViewById(R.id.userID); onChangeText.setText(userRandomId);
-
-            Toast.makeText(this,"onRestoreInstanceState() méthode bien appelé",Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this,"onRestore() méthode bien appelé: " + nom + prenom + age + tel  + userRandomId,Toast.LENGTH_SHORT).show();
     }
 }

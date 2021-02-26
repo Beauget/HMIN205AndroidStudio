@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FileActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
