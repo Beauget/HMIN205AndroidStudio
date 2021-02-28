@@ -3,6 +3,9 @@ package com.example.tp3persistance;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +23,6 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Inscription extends AppCompatActivity {
-
-
-
 
     // Key des données (voir cours)
     private static final String _Key_of_nom = "nom";
@@ -56,19 +56,24 @@ public class Inscription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if ((savedInstanceState != null) ) {
-           nom = savedInstanceState.getString(_Key_of_nom);
-           prenom = savedInstanceState.getString(_Key_of_prenom);
-           age = savedInstanceState.getString(_Key_of_age);
-           tel = savedInstanceState.getString(_Key_of_telephone);
-           userRandomId = savedInstanceState.getString(_Key_of_userID);
+        if ((savedInstanceState != null)) {
+            nom = savedInstanceState.getString(_Key_of_nom);
+            prenom = savedInstanceState.getString(_Key_of_prenom);
+            age = savedInstanceState.getString(_Key_of_age);
+            tel = savedInstanceState.getString(_Key_of_telephone);
+            userRandomId = savedInstanceState.getString(_Key_of_userID);
 
-           // On les affiches
-            onChange = findViewById(R.id.nom); onChange.setText(nom);
-            onChange = findViewById(R.id.prenom); onChange.setText(prenom);
-            onChange = findViewById(R.id.age); onChange.setText(age);
-            onChange = findViewById(R.id.numero); onChange.setText(tel);
-            onChangeText = findViewById(R.id.userID); onChangeText.setText(userRandomId);
+            // On les affiches
+            onChange = findViewById(R.id.nom);
+            onChange.setText(nom);
+            onChange = findViewById(R.id.prenom);
+            onChange.setText(prenom);
+            onChange = findViewById(R.id.age);
+            onChange.setText(age);
+            onChange = findViewById(R.id.numero);
+            onChange.setText(tel);
+            onChangeText = findViewById(R.id.userID);
+            onChangeText.setText(userRandomId);
 
             try {
                 FileOutputStream file = openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -79,11 +84,10 @@ public class Inscription extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Toast.makeText(this,"onCreate() méthode cas if : " + nom + prenom + age + tel  + userRandomId,Toast.LENGTH_SHORT).show();
-        }
-        else {
+            Toast.makeText(this, "onCreate() méthode cas if : " + nom + prenom + age + tel + userRandomId, Toast.LENGTH_SHORT).show();
+        } else {
             setRandId();
-            Toast.makeText(this, "onCreate() méthode cas else : " + userRandomId,Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, "onCreate() méthode cas else : " + userRandomId, Toast.LENGTH_SHORT).show();
         }
         setContentView(R.layout.activity_main);
 
@@ -110,14 +114,25 @@ public class Inscription extends AppCompatActivity {
 
                 try {
                     FileOutputStream file = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-                    String concat = "UserId : " + userRandomId + " || " + "Nom : " + nom + " || "  + "Prénom : "  + prenom  + " || " + "Age : " + age  + " || " + "Tèl : " + tel  ;
+                    String concat = "UserId : " + userRandomId + " || " + "Nom : " + nom + " || " + "Prénom : " + prenom + " || " + "Age : " + age + " || " + "Tèl : " + tel + " Nombre d'utilisation : " + Utilisation.cpt;
                     file.write(concat.getBytes());
                     file.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                intent.putExtra(FileActivity.FILENAME,FILENAME);
+                intent.putExtra(FileActivity.FILENAME, FILENAME);
                 startActivity(intent);
+            }
+        });
+
+        Button planning = (Button) findViewById(R.id.planning);
+
+        planning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Inscription.this, Planning.class);
+                startActivity(intent);
+
             }
         });
 
@@ -152,6 +167,26 @@ public class Inscription extends AppCompatActivity {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(this, "OnPause() bien appelé", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getLifecycle().addObserver(new Utilisation());
+        Toast.makeText(this,"OnResume() bien appelé",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, "OnDestroy() bien appelé", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         nom = savedInstanceState.getString(_Key_of_nom);
@@ -173,5 +208,13 @@ public class Inscription extends AppCompatActivity {
         onChangeText.setText(userRandomId);
 
         Toast.makeText(this,"onRestore() méthode bien appelé: " + nom + prenom + age + tel  + userRandomId,Toast.LENGTH_SHORT).show();
+    }
+
+    public static class Utilisation implements LifecycleObserver {
+        public static int cpt = 0;
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        public static void NombreUtilisation() {
+            cpt++;
+        }
     }
 }

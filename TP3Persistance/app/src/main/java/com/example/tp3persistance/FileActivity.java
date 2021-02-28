@@ -40,14 +40,13 @@ public class FileActivity extends AppCompatActivity {
                 String receiveString;
                 while ((receiveString = bufferedReader.readLine()) != null) {
                     concat += receiveString;
-                    Log.e("File", "Read: " + receiveString);
                 }
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
-            Log.e("File", "Not found: " + e.toString());
+             e.toString();
         } catch (IOException e) {
-            Log.e("File", "Can't read: " + e.toString());
+            e.toString();
         }
         t = findViewById(R.id.text1);
         t.setText(concat.toString());

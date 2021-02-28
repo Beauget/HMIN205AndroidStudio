@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TP3Persistance">
-        <activity android:name=".Inscription"
-            android:configChanges="orientation|screenSize"
-            >
+        <activity android:name=".Inscription">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".FileActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Planning">
             <intent-filter>
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
