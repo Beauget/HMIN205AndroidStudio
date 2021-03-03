@@ -91,6 +91,8 @@ public class Inscription extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
+
+
         Button soum = (Button) findViewById(R.id.soum);
 
         soum.setOnClickListener(new View.OnClickListener() {

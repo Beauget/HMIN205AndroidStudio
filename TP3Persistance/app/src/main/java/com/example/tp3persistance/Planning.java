@@ -82,6 +82,8 @@ public class Planning extends AppCompatActivity {
     private PlanningView model10h;
     private PlanningView model14h;
     private PlanningView model16h;
+
+
     private final static String fileName = "planning";
     private static List<String> planningRes = new ArrayList<String>();
     TextView setMyText;
@@ -107,7 +109,7 @@ public class Planning extends AppCompatActivity {
         myDAO.insert(new PlanningDatabase(0,"08h-10h", "Rencontre client Dupont"));
         myDAO.insert(new PlanningDatabase(1,"10h-12h", "Travailler le dossier recrutement"));
         myDAO.insert(new PlanningDatabase(2,"14h-16h", "Réunion équipe"));
-        myDAO.insert(new PlanningDatabase(3,"14h-16h", "Préparation dossier vente"));
+        myDAO.insert(new PlanningDatabase(3,"16h-18h", "Préparation dossier vente"));
 
 
         super.onCreate(savedInstanceState);
@@ -135,6 +137,7 @@ public class Planning extends AppCompatActivity {
         model14h = new ViewModelProvider(this).get(PlanningView.class);
         model16h = new ViewModelProvider(this).get(PlanningView.class);
 
+
         StringBuilder dataRdv = new StringBuilder();
         dataRdv.append("Rencontre client Dupont").append("\n");
         dataRdv.append("Travailler le dossier recrutement").append("\n");
@@ -158,8 +161,8 @@ public class Planning extends AppCompatActivity {
         };
 
         model8h.getRdv_8h().observe(this,rdv8hObserver);
-        //    model8h.setRdv_8h(planningRes.get(0));
-        model8h.setRdv_8h(myDAO.getByHeure("08h-10h").intitule_rdv);
+        //  model8h.setRdv_8h(planningRes.get(0));
+              model8h.setRdv_8h(myDAO.getByHeure("08h-10h").intitule_rdv);
 
         //Création observer + appel méthode get ViewModel par rdv
         final Observer<String> rdv10hObserver = new Observer<String>() {
@@ -171,8 +174,8 @@ public class Planning extends AppCompatActivity {
         };
 
         model10h.getRdv_10h().observe(this,rdv10hObserver);
-     //   model10h.setRdv_10h(planningRes.get(1));
-        model10h.setRdv_10h(myDAO.getByHeure("10h-12h").intitule_rdv);
+        //    model10h.setRdv_10h(planningRes.get(1));
+             model10h.setRdv_10h(myDAO.getByHeure("10h-12h").intitule_rdv);
 
         //Création observer + appel méthode get ViewModel par rdv
         final Observer<String> rdv14hObserver = new Observer<String>() {
@@ -184,8 +187,8 @@ public class Planning extends AppCompatActivity {
         };
 
         model14h.getRdv_14h().observe(this,rdv14hObserver);
-       // model14h.setRdv_14h(planningRes.get(2));
-        model14h.setRdv_14h(myDAO.getByHeure("14h-16h").intitule_rdv);
+        //   model14h.setRdv_14h(planningRes.get(2));
+            model14h.setRdv_14h(myDAO.getByHeure("14h-16h").intitule_rdv);
 
         //Création observer + appel méthode get ViewModel par rdv
         final Observer<String> rdv16hObserver = new Observer<String>() {
@@ -197,27 +200,33 @@ public class Planning extends AppCompatActivity {
         };
 
         model16h.getRdv_16h().observe(this,rdv16hObserver);
-        //model16h.setRdv_16h(planningRes.get(2));
-        model16h.setRdv_16h(myDAO.getByHeure("14h-16h").intitule_rdv);
+        //     model16h.setRdv_16h(planningRes.get(2));
+       model16h.setRdv_16h(myDAO.getByHeure("16h-18h").intitule_rdv);
 
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                model8h.setRdv_8h(planningRes.get(0));
+
+                model8h.setRdv_8h(myDAO.getByHeure("08h-10h").intitule_rdv);
+                model10h.setRdv_10h(myDAO.getByHeure("10h-12h").intitule_rdv);
+                model14h.setRdv_14h(myDAO.getByHeure("14h-16h").intitule_rdv);
+                model16h.setRdv_16h(myDAO.getByHeure("16h-18h").intitule_rdv);
+                //Exercice 5 test
+             /*   model8h.setRdv_8h(planningRes.get(0));
                 model10h.setRdv_10h(planningRes.get(1));
                 model14h.setRdv_14h(planningRes.get(2));
                 model16h.setRdv_16h(planningRes.get(3));
                 planningRes.clear();
 
-           /*     StringBuilder dataRandom = new StringBuilder();
+             StringBuilder dataRandom = new StringBuilder();
                 dataRandom.append(randomString()).append("\n");
                 dataRandom.append(randomString()).append("\n");
                 dataRandom.append(randomString()).append("\n");
-                dataRandom.append(randomString()).append("\n");*/
+                dataRandom.append(randomString()).append("\n");
 
-              //  ecrireFichier(dataRandom.toString(),fileName,getApplicationContext());
-                lireFichier(planningRes,fileName,getApplicationContext());
+                ecrireFichier(dataRandom.toString(),fileName,getApplicationContext());
+                lireFichier(planningRes,fileName,getApplicationContext());*/
 
                 handler.postDelayed(this, 1000);
             }
