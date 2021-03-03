@@ -1,9 +1,16 @@
 # HMIN205AndroidStudio
 
+# TP3 Persistance 
+
+Contient les exercices 1 à 6 sur la persistance des données.
+
+# ScreenTP3Persistance
+
+Contient les captures d'écran du TP sur la persistance des données.
 
 # TP2Capteurs 
 
-Contient tout les exercices sur les capteurs
+Contient  les exercices 1 à 6 sur les capteurs
 
 # ScreenTP2Capteurs
 
